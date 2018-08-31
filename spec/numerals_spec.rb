@@ -50,6 +50,42 @@ describe 'numeralize' do
 
     expect(subject).to eq('XI')
   end
+
+  it 'outputs XIX given 19' do
+    subject = numeralize(19)
+
+    expect(subject).to eq('XIX')
+  end
+
+  it 'outputs L given 50' do
+    subject = numeralize(50)
+
+    expect(subject).to eq('L')
+  end
+
+  it 'outputs C given 100' do
+    subject = numeralize(100)
+
+    expect(subject).to eq('C')
+  end
+
+  it 'outputs D given 500' do
+    subject = numeralize(500)
+
+    expect(subject).to eq('D')
+  end
+
+  it 'outputs M given 1000' do
+    subject = numeralize(1000)
+
+    expect(subject).to eq('M')
+  end
+
+  it 'outputs MCMXLIV given 1944' do
+    subject = numeralize(1944)
+
+    expect(subject).to eq('MCMXLIV')
+  end
 end
 
 xdescribe 'extract_numeral' do
