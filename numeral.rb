@@ -1,21 +1,29 @@
 def numeralize(number)
-  string = ""
+  numerals = [
+    [1000, "M"],
+    [900, "CM"],
+    [500, "D"],
+    [400, "CD"],
+    [100, "C"],
+    [90, "XC"],
+    [50, "L"],
+    [40, "XL"],
+    [10, "X"],
+    [9, "IX"],
+    [5, "V"],
+    [4, "IV"],
+    [1, "I"]
+  ]
 
-  xs, number = extract_numeral("X", 10, number)
-  string << xs
-
-  vs, number = extract_numeral("V", 5, number)
-  string << vs
-
-  is, number = extract_numeral("I", 1, number)
-  string << is
+  extract_numerals(numerals, number)
 end
 
-def extract_numeral(numeral, value, number)
-  string = ""
-  count = number/value
-  new_number = number%value
-  string << numeral*count
+def extract_numerals(numerals, number)
+  return "" unless numerals.any?
 
-  [string, new_number]
+  head, *tail = *numerals
+  (value, numeral) = head
+
+  count = number/value
+  return numeral*count << extract_numerals(tail, number%value)
 end
